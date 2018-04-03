@@ -14,7 +14,7 @@ defaults: &defaults
           name: Replace Auth0 test credentials
           command: |
             mv $AUTH0_CFG.example $AUTH0_CFG
-            sed -i 's/{CLIENT_ID}/'$AUTH0_TEST_CLIENT_ID'/g' $AUTH0_CFG
+            sed -i 's/{CLIENT_ID}/'$AUTH0_TEST_CLIENT_ID'999/g' $AUTH0_CFG
             sed -i 's/{DOMAIN}/'$AUTH0_TEST_DOMAIN'/g' $AUTH0_CFG
             sed -i 's/{API_IDENTIFIER}/'$AUTH0_TEST_API_IDENTIFIER'/g' $AUTH0_CFG
             
@@ -38,7 +38,6 @@ defaults: &defaults
             docker cp $(pwd)/codecept.conf.js tester:/tests/codecept.conf.js
             docker start -i tester
             docker cp tester:/tests/out/ $(pwd)/out
-            #docker rm -f $(docker ps -aq)
           working_directory: scripts
 
       - run:
